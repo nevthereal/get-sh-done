@@ -8,7 +8,6 @@ class StepManager {
 
 	set add(step: Step) {
 		this.steps.push(step);
-		console.log(this.steps);
 	}
 
 	set remove(index: number) {
