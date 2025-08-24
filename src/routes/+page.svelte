@@ -8,9 +8,12 @@
 	import { stepManager } from '$lib/steps.svelte';
 </script>
 
-<h1 class="my-16 text-center text-4xl font-black">What big task or goal lies ahead of you?</h1>
+<div class="my-16 text-center">
+	<h1 class="mb-2 text-4xl font-black">What big task or goal lies ahead of you?</h1>
+	<h3 class="text-lg text-muted-foreground italic">Don't worry, we will break it down for you</h3>
+</div>
 <form {...generateSteps} class="flex gap-2">
-	<Input name="prompt" placeholder="Just state it. We will break it down..." />
+	<Input name="prompt" placeholder="Just state it..." />
 	<Button type="submit" size="icon">
 		<CornerRightUp />
 	</Button>
