@@ -4,7 +4,11 @@ import { error } from '@sveltejs/kit';
 import { OPENAI_KEY } from '$env/static/private';
 import { createGateway } from '@ai-sdk/gateway';
 import { zStep } from '$lib/utils';
-import { stepManager } from './steps.svelte';
+import { ConvexHttpClient } from 'convex/browser';
+import { PUBLIC_CONVEX_URL } from '$env/static/public';
+import { api } from '$convex/_generated/api';
+
+const client = new ConvexHttpClient(PUBLIC_CONVEX_URL);
 
 const gateway = createGateway({
 	apiKey: OPENAI_KEY
@@ -26,6 +30,6 @@ export const generateSteps = form(async (formData) => {
 	});
 
 	for await (const step of elementStream) {
-		stepManager.add = step;
+		client.mutation(api.functions.insertStep, { step });
 	}
 });

@@ -2,6 +2,10 @@
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
 	import { ModeWatcher } from 'mode-watcher';
+	import { setupConvex } from 'convex-svelte';
+	import { PUBLIC_CONVEX_URL } from '$env/static/public';
+
+	setupConvex(PUBLIC_CONVEX_URL);
 
 	let { children } = $props();
 </script>

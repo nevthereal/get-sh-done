@@ -56,6 +56,8 @@
 	"dependencies": {
 		"@ai-sdk/gateway": "^1.0.11",
 		"@neondatabase/serverless": "^0.10.4",
+		"convex": "^1.26.1",
+		"convex-svelte": "^0.0.11",
 		"drizzle-orm": "^0.40.0",
 		"mode-watcher": "^1.1.0"
 	},

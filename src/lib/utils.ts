@@ -19,7 +19,7 @@ export const zStep = z.object({
 	description: z.string('More precise description of the task'),
 	howOften: z
 		.enum(['daily', 'weekly', 'hourly', 'monthly'])
-		.nullable()
+		.optional()
 		.describe('If a habit, how often should the step be repeated')
 });
 
