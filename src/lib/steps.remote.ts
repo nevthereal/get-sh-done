@@ -1,5 +1,5 @@
 import { form } from '$app/server';
-import { streamObject } from 'ai';
+import { generateText, streamObject } from 'ai';
 import { error } from '@sveltejs/kit';
 import { OPENAI_KEY } from '$env/static/private';
 import { createGateway } from '@ai-sdk/gateway';
@@ -19,6 +19,15 @@ export const generateSteps = form(async (formData) => {
 
 	if (!prompt) return error(400, 'No prompt');
 
+	const newProjectName = await generateText({
+		model: gateway('openai/gpt-5-mini'),
+		prompt: prompt.toString(),
+		system:
+			"You are an assistant who processes the user's input, which is a big goal or task, and outputs a short title for a DB entry of set goal/task."
+	});
+
+	const goal = await client.mutation(api.functions.insertGoal, { title: newProjectName.text });
+
 	const { elementStream } = streamObject({
 		model: gateway('openai/gpt-5-mini'),
 		prompt: prompt.toString(),
@@ -30,6 +39,6 @@ export const generateSteps = form(async (formData) => {
 	});
 
 	for await (const step of elementStream) {
-		client.mutation(api.functions.insertStep, { step });
+		client.mutation(api.functions.insertStep, { ...step, goalId: goal });
 	}
 });

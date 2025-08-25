@@ -1,13 +1,19 @@
 import { defineSchema, defineTable } from 'convex/server';
 import { v } from 'convex/values';
 
-export const stepObject = v.object({
-	title: v.string(),
-	description: v.string(),
-	isHabit: v.boolean(),
-	howOften: v.optional(v.string())
-});
-
 export default defineSchema({
-	step: defineTable(stepObject)
+	step: defineTable(
+		v.object({
+			title: v.string(),
+			description: v.string(),
+			isHabit: v.boolean(),
+			howOften: v.optional(v.string()),
+			goalId: v.id('goal')
+		})
+	),
+	goal: defineTable(
+		v.object({
+			title: v.string()
+		})
+	)
 });
