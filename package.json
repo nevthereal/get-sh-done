@@ -16,9 +16,7 @@
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
 		"db:studio": "drizzle-kit studio",
-		"convex:dev": "convex dev",
-		"convex:build": "convex build",
-		"convex:deploy": "convex deploy"
+		"convex:dev": "convex dev"
 	},
 	"devDependencies": {
 		"@ai-sdk/openai": "^2.0.19",

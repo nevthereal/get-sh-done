@@ -1,5 +1,6 @@
 import { v } from 'convex/values';
 import { mutation, query } from './_generated/server';
+import { stepType } from './schema';
 
 // Return the last 100 tasks in a given task list.
 export const getSteps = query({
@@ -10,13 +11,7 @@ export const getSteps = query({
 });
 
 export const insertStep = mutation({
-	args: {
-		title: v.string(),
-		description: v.string(),
-		isHabit: v.boolean(),
-		howOften: v.optional(v.string()),
-		goalId: v.id('goal')
-	},
+	args: stepType,
 	handler: async (ctx, step) => {
 		await ctx.db.insert('step', step);
 	}
